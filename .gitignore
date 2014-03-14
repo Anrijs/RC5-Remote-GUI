@@ -1,0 +1,5 @@
+bin/
+wbp-meta/
+.project
+.classpath
+lib/
