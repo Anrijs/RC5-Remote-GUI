@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.imageio.ImageIO;
@@ -28,7 +29,8 @@ import jssc.SerialPortList;
 public class RC5_GUI extends JFrame {
 
 	private JFrame frame;
-	public SerialPort serrialPort;
+	public SerialPort serialPort;
+	public boolean connected = false;
 
 	/**
 	 * Launch the application.
@@ -71,7 +73,7 @@ public class RC5_GUI extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnConnect = new JButton("Connect");
+		final JButton btnConnect = new JButton("Connect");
 		JButton btnRead = new JButton("Read");
 		JButton btnWrite = new JButton("Write");
 		final JComboBox serialList = new JComboBox();
@@ -114,24 +116,39 @@ public class RC5_GUI extends JFrame {
 		JLabel lblBattery = new JLabel("Battery:");
 		JLabel lbVoltage = new JLabel("0.00V");
 		
-		btnConnect.setBounds(436, 11, 89, 23);
+		btnConnect.setBounds(426, 11, 105, 23);
 		frame.getContentPane().add(btnConnect);
 		btnConnect.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SerialPort serialPort = new SerialPort(String.valueOf(serialList.getSelectedItem()));
-		        try {
-		            serialPort.openPort();//Open serial port
-		            serialPort.setParams(SerialPort.BAUDRATE_9600, 
-		                                 SerialPort.DATABITS_8,
-		                                 SerialPort.STOPBITS_1,
-		                                 SerialPort.PARITY_NONE);//Set params. Also you can set params by this string: serialPort.setParams(9600, 8, 1, 0);
-		            serialPort.writeBytes("This is a test string".getBytes());//Write data to port
-		            serialPort.closePort();//Close serial port
-		        }
-		        catch (SerialPortException ex) {
-		            System.out.println(ex);
-		        }
+				if(connected) {
+					try {
+						serialPort.closePort();
+					} catch (SerialPortException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}//Close serial port
+					btnConnect.setLabel("Connect");
+		            btnConnect.setBackground(new Color(240,240,240));
+		            connected = false;
+				}
+				else {
+					serialPort = new SerialPort(String.valueOf(serialList.getSelectedItem()));
+			        try {
+			            serialPort.openPort();//Open serial port
+			            serialPort.setParams(SerialPort.BAUDRATE_9600, 
+			                                 SerialPort.DATABITS_8,
+			                                 SerialPort.STOPBITS_1,
+			                                 SerialPort.PARITY_NONE);//Set params. Also you can set params by this string: serialPort.setParams(9600, 8, 1, 0);
+			            serialPort.writeBytes("This is a test string".getBytes());//Write data to port
+			            btnConnect.setLabel("Disconnect");
+			            btnConnect.setBackground(new Color(50,230,50));
+			            connected = true;
+			        }
+			        catch (SerialPortException ex) {
+			            System.out.println(ex);
+			        }
+				}
 			}
         });
 		
@@ -141,7 +158,7 @@ public class RC5_GUI extends JFrame {
 		btnWrite.setBounds(160, 299, 73, 23);
 		frame.getContentPane().add(btnWrite);
 		
-		serialList.setBounds(535, 12, 79, 20);
+		serialList.setBounds(541, 12, 73, 20);
 		frame.getContentPane().add(serialList);
 		
 		inModeStart.setModel(new SpinnerNumberModel(0, 0, 7, 1));
@@ -295,7 +312,7 @@ public class RC5_GUI extends JFrame {
 		frame.getContentPane().add(jImage);
 		
 		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setBounds(422, 0, 4, 382);
+		separator.setBounds(412, 0, 4, 382);
 		frame.getContentPane().add(separator);
 		
 		lblBattery.setHorizontalAlignment(SwingConstants.LEFT);
