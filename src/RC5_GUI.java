@@ -74,8 +74,8 @@ public class RC5_GUI extends JFrame {
 		JButton btnConnect = new JButton("Connect");
 		JButton btnRead = new JButton("Read");
 		JButton btnWrite = new JButton("Write");
-		final JComboBox comboBox = new JComboBox();
-		JSpinner spinner = new JSpinner();
+		final JComboBox serialList = new JComboBox();
+		JSpinner inModeStart = new JSpinner();
 		JLabel lblStart = new JLabel("Start");
 		JLabel lblStop = new JLabel("Stop");
 		JLabel lblA = new JLabel("A");
@@ -86,40 +86,40 @@ public class RC5_GUI extends JFrame {
 		JLabel lblF = new JLabel("F");
 		JLabel lblMode = new JLabel("Mode");
 		JLabel lblAddress = new JLabel("Address");
-		JSpinner spinner_1 = new JSpinner();
-		JSpinner spinner_2 = new JSpinner();
-		JSpinner spinner_3 = new JSpinner();
-		JSpinner spinner_4 = new JSpinner();
-		JSpinner spinner_5 = new JSpinner();
-		JSpinner spinner_6 = new JSpinner();
-		JSpinner spinner_7 = new JSpinner();
-		JSpinner spinner_10 = new JSpinner();
-		JSpinner spinner_8 = new JSpinner();
-		JSpinner spinner_9 = new JSpinner();
-		JSpinner spinner_11 = new JSpinner();
-		JSpinner spinner_12 = new JSpinner();
-		JSpinner spinner_13 = new JSpinner();
-		JSpinner spinner_14 = new JSpinner();
-		JSpinner spinner_15 = new JSpinner();
-		JSpinner spinner_16 = new JSpinner();
-		JSpinner spinner_17 = new JSpinner();
-		JSpinner spinner_18 = new JSpinner();
-		JSpinner spinner_19 = new JSpinner();
-		JSpinner spinner_20 = new JSpinner();
-		JSpinner spinner_21 = new JSpinner();
-		JSpinner spinner_22 = new JSpinner();
-		JSpinner spinner_23 = new JSpinner();
+		JSpinner inModeStop = new JSpinner();
+		JSpinner inModeA = new JSpinner();
+		JSpinner inModeB = new JSpinner();
+		JSpinner inModeC = new JSpinner();
+		JSpinner inModeD = new JSpinner();
+		JSpinner inModeE = new JSpinner();
+		JSpinner inModeF = new JSpinner();
+		JSpinner inAddrA = new JSpinner();
+		JSpinner inAddrStop = new JSpinner();
+		JSpinner inAddrStart = new JSpinner();
+		JSpinner inAddrB = new JSpinner();
+		JSpinner inAddrC = new JSpinner();
+		JSpinner inAddrD = new JSpinner();
+		JSpinner inAddrE = new JSpinner();
+		JSpinner inAddrF = new JSpinner();
+		JSpinner inCmdStart = new JSpinner();
+		JSpinner inCmdStop = new JSpinner();
+		JSpinner inCmdA = new JSpinner();
+		JSpinner inCmB = new JSpinner();
+		JSpinner inCmdC = new JSpinner();
+		JSpinner inCmdD = new JSpinner();
+		JSpinner inCmdE = new JSpinner();
+		JSpinner inCmdF = new JSpinner();
 		JLabel jImage = new JLabel(new ImageIcon(wPic));
 		JSeparator separator = new JSeparator();
 		JLabel lblBattery = new JLabel("Battery:");
-		JLabel lblv = new JLabel("0.00V");
+		JLabel lbVoltage = new JLabel("0.00V");
 		
 		btnConnect.setBounds(436, 11, 89, 23);
 		frame.getContentPane().add(btnConnect);
 		btnConnect.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SerialPort serialPort = new SerialPort(String.valueOf(comboBox.getSelectedItem()));
+				SerialPort serialPort = new SerialPort(String.valueOf(serialList.getSelectedItem()));
 		        try {
 		            serialPort.openPort();//Open serial port
 		            serialPort.setParams(SerialPort.BAUDRATE_9600, 
@@ -141,12 +141,12 @@ public class RC5_GUI extends JFrame {
 		btnWrite.setBounds(160, 299, 73, 23);
 		frame.getContentPane().add(btnWrite);
 		
-		comboBox.setBounds(535, 12, 79, 20);
-		frame.getContentPane().add(comboBox);
+		serialList.setBounds(535, 12, 79, 20);
+		frame.getContentPane().add(serialList);
 		
-		spinner.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		spinner.setBounds(57, 40, 42, 20);
-		frame.getContentPane().add(spinner);
+		inModeStart.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		inModeStart.setBounds(57, 40, 42, 20);
+		frame.getContentPane().add(inModeStart);
 		
 		lblStart.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStart.setFont(new Font("Helvetica", Font.PLAIN, 14));
@@ -199,97 +199,97 @@ public class RC5_GUI extends JFrame {
 		frame.getContentPane().add(lblCommand);
 		
 		
-		spinner_1.setBounds(57, 71, 42, 20);
-		spinner_1.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		frame.getContentPane().add(spinner_1);
+		inModeStop.setBounds(57, 71, 42, 20);
+		inModeStop.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		frame.getContentPane().add(inModeStop);
 		
-		spinner_2.setBounds(57, 113, 42, 20);
-		spinner_2.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		frame.getContentPane().add(spinner_2);
+		inModeA.setBounds(57, 113, 42, 20);
+		inModeA.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		frame.getContentPane().add(inModeA);
 		
-		spinner_3.setBounds(57, 144, 42, 20);
-		spinner_3.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		frame.getContentPane().add(spinner_3);
+		inModeB.setBounds(57, 144, 42, 20);
+		inModeB.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		frame.getContentPane().add(inModeB);
 		
-		spinner_4.setBounds(57, 175, 42, 20);
-		spinner_4.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		frame.getContentPane().add(spinner_4);
+		inModeC.setBounds(57, 175, 42, 20);
+		inModeC.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		frame.getContentPane().add(inModeC);
 		
-		spinner_5.setBounds(57, 206, 42, 20);
-		spinner_5.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		frame.getContentPane().add(spinner_5);
+		inModeD.setBounds(57, 206, 42, 20);
+		inModeD.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		frame.getContentPane().add(inModeD);
 		
-		spinner_6.setBounds(57, 237, 42, 20);
-		spinner_6.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		frame.getContentPane().add(spinner_6);
+		inModeE.setBounds(57, 237, 42, 20);
+		inModeE.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		frame.getContentPane().add(inModeE);
 		
-		spinner_7.setBounds(57, 268, 42, 20);
-		spinner_7.setModel(new SpinnerNumberModel(0, 0, 7, 1));
-		frame.getContentPane().add(spinner_7);
+		inModeF.setBounds(57, 268, 42, 20);
+		inModeF.setModel(new SpinnerNumberModel(0, 0, 7, 1));
+		frame.getContentPane().add(inModeF);
 		
-		spinner_8.setBounds(109, 71, 57, 20);
-		spinner_8.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		frame.getContentPane().add(spinner_8);
+		inAddrStop.setBounds(109, 71, 57, 20);
+		inAddrStop.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		frame.getContentPane().add(inAddrStop);
 		
-		spinner_9.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		spinner_9.setBounds(109, 40, 57, 20);
-		frame.getContentPane().add(spinner_9);
+		inAddrStart.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		inAddrStart.setBounds(109, 40, 57, 20);
+		frame.getContentPane().add(inAddrStart);
 		
-		spinner_10.setBounds(109, 113, 57, 20);
-		spinner_10.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		frame.getContentPane().add(spinner_10);
+		inAddrA.setBounds(109, 113, 57, 20);
+		inAddrA.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		frame.getContentPane().add(inAddrA);
 		
-		spinner_11.setBounds(109, 144, 57, 20);
-		spinner_11.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		frame.getContentPane().add(spinner_11);
+		inAddrB.setBounds(109, 144, 57, 20);
+		inAddrB.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		frame.getContentPane().add(inAddrB);
 		
-		spinner_12.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		spinner_12.setBounds(109, 175, 57, 20);
-		frame.getContentPane().add(spinner_12);
+		inAddrC.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		inAddrC.setBounds(109, 175, 57, 20);
+		frame.getContentPane().add(inAddrC);
 		
-		spinner_13.setBounds(109, 206, 57, 20);
-		spinner_13.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		frame.getContentPane().add(spinner_13);
+		inAddrD.setBounds(109, 206, 57, 20);
+		inAddrD.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		frame.getContentPane().add(inAddrD);
 		
-		spinner_14.setBounds(109, 237, 57, 20);
-		spinner_14.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		frame.getContentPane().add(spinner_14);
+		inAddrE.setBounds(109, 237, 57, 20);
+		inAddrE.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		frame.getContentPane().add(inAddrE);
 		
-		spinner_15.setBounds(109, 270, 57, 20);
-		spinner_15.setModel(new SpinnerNumberModel(0, 0, 31, 1));
-		frame.getContentPane().add(spinner_15);
+		inAddrF.setBounds(109, 270, 57, 20);
+		inAddrF.setModel(new SpinnerNumberModel(0, 0, 31, 1));
+		frame.getContentPane().add(inAddrF);
 		
-		spinner_16.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		spinner_16.setBounds(176, 40, 57, 20);
-		frame.getContentPane().add(spinner_16);
+		inCmdStart.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		inCmdStart.setBounds(176, 40, 57, 20);
+		frame.getContentPane().add(inCmdStart);
 		
-		spinner_17.setBounds(176, 71, 57, 20);
-		spinner_17.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		frame.getContentPane().add(spinner_17);
+		inCmdStop.setBounds(176, 71, 57, 20);
+		inCmdStop.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		frame.getContentPane().add(inCmdStop);
 		
-		spinner_18.setBounds(176, 113, 57, 20);
-		spinner_18.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		frame.getContentPane().add(spinner_18);
+		inCmdA.setBounds(176, 113, 57, 20);
+		inCmdA.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		frame.getContentPane().add(inCmdA);
 		
-		spinner_19.setBounds(176, 144, 57, 20);
-		spinner_19.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		frame.getContentPane().add(spinner_19);
+		inCmB.setBounds(176, 144, 57, 20);
+		inCmB.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		frame.getContentPane().add(inCmB);
 		
-		spinner_20.setBounds(176, 175, 57, 20);
-		spinner_20.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		frame.getContentPane().add(spinner_20);
+		inCmdC.setBounds(176, 175, 57, 20);
+		inCmdC.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		frame.getContentPane().add(inCmdC);
 		
-		spinner_21.setBounds(176, 206, 57, 20);
-		spinner_21.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		frame.getContentPane().add(spinner_21);
+		inCmdD.setBounds(176, 206, 57, 20);
+		inCmdD.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		frame.getContentPane().add(inCmdD);
 		
-		spinner_22.setBounds(176, 237, 57, 20);
-		spinner_22.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		frame.getContentPane().add(spinner_22);
+		inCmdE.setBounds(176, 237, 57, 20);
+		inCmdE.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		frame.getContentPane().add(inCmdE);
 		
-		spinner_23.setBounds(176, 268, 57, 20);
-		spinner_23.setModel(new SpinnerNumberModel(0, 0, 127, 1));
-		frame.getContentPane().add(spinner_23);
+		inCmdF.setBounds(176, 268, 57, 20);
+		inCmdF.setModel(new SpinnerNumberModel(0, 0, 127, 1));
+		frame.getContentPane().add(inCmdF);
 		
 		jImage.setBounds(436, 48, 176, 310);
 		frame.getContentPane().add(jImage);
@@ -303,14 +303,14 @@ public class RC5_GUI extends JFrame {
 		lblBattery.setBounds(10, 344, 57, 14);
 		frame.getContentPane().add(lblBattery);
 		
-		lblv.setHorizontalAlignment(SwingConstants.LEFT);
-		lblv.setFont(new Font("Helvetica", Font.PLAIN, 14));
-		lblv.setBounds(73, 344, 57, 14);
-		frame.getContentPane().add(lblv);
+		lbVoltage.setHorizontalAlignment(SwingConstants.LEFT);
+		lbVoltage.setFont(new Font("Helvetica", Font.PLAIN, 14));
+		lbVoltage.setBounds(73, 344, 57, 14);
+		frame.getContentPane().add(lbVoltage);
 		
 		String[] portNames = SerialPortList.getPortNames();
         for(int i = 0; i < portNames.length; i++){
-        	comboBox.addItem(portNames[i]);
+        	serialList.addItem(portNames[i]);
         }
         
         
