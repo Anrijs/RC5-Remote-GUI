@@ -38,7 +38,76 @@ import jssc.SerialPortList;
 public class RC5_GUI extends JFrame implements FocusListener {
 	
 	 public void focusLost(FocusEvent e) {
-	    }
+		 
+		 if(inAddrA.getText().length() < 2) {inAddrA.setText("0"+inAddrA.getText());}
+		 if(inAddrStop.getText().length() < 2) {inAddrStop.setText("0"+inAddrStop.getText());}
+		 if(inAddrStart.getText().length() < 2) {inAddrStart.setText("0"+inAddrStart.getText());}
+		 if(inAddrB.getText().length() < 2) {inAddrB.setText("0"+inAddrB.getText());}
+		 if(inAddrC.getText().length() < 2) {inAddrC.setText("0"+inAddrC.getText());}
+		 if(inAddrD.getText().length() < 2) {inAddrD.setText("0"+inAddrD.getText());}
+		 if(inAddrE.getText().length() < 2) {inAddrE.setText("0"+inAddrE.getText());}
+		 if(inAddrF.getText().length() < 2) {inAddrF.setText("0"+inAddrF.getText());}
+		 if(inCmdStart.getText().length() < 2) {inCmdStart.setText("0"+inCmdStart.getText());}
+		 if(inCmdStop.getText().length() < 2) {inCmdStop.setText("0"+inCmdStop.getText());}
+		 if(inCmdA.getText().length() < 2) {inCmdA.setText("0"+inCmdA.getText());}
+		 if(inCmdB.getText().length() < 2) {inCmdB.setText("0"+inCmdB.getText());}
+		 if(inCmdC.getText().length() < 2) {inCmdC.setText("0"+inCmdC.getText());}
+		 if(inCmdD.getText().length() < 2) {inCmdD.setText("0"+inCmdD.getText());}
+		 if(inCmdE.getText().length() < 2) {inCmdE.setText("0"+inCmdE.getText());}
+		 if(inCmdF.getText().length() < 2) {inCmdF.setText("0"+inCmdF.getText());}
+
+		 
+		 if(inModeStart.getText().isEmpty()) {inModeStart.setText("0");}
+		 if(inModeStop.getText().isEmpty()) {inModeStop.setText("0");}
+		 if(inModeA.getText().isEmpty()) {inModeA.setText("0");}
+		 if(inModeB.getText().isEmpty()) {inModeB.setText("0");}
+		 if(inModeC.getText().isEmpty()) {inModeC.setText("0");}
+		 if(inModeD.getText().isEmpty()) {inModeD.setText("0");}
+		 if(inModeE.getText().isEmpty()) {inModeE.setText("0");}
+		 if(inModeF.getText().isEmpty()) {inModeF.setText("0");}
+		 
+		 if(inAddrA.getText().isEmpty()) {inAddrA.setText("00");}
+		 if(inAddrStop.getText().isEmpty()) {inAddrStop.setText("00");}
+		 if(inAddrStart.getText().isEmpty()) {inAddrStart.setText("00");}
+		 if(inAddrB.getText().isEmpty()) {inAddrB.setText("00");}
+		 if(inAddrC.getText().isEmpty()) {inAddrC.setText("00");}
+		 if(inAddrD.getText().isEmpty()) {inAddrD.setText("00");}
+		 if(inAddrE.getText().isEmpty()) {inAddrE.setText("00");}
+		 if(inAddrF.getText().isEmpty()) {inAddrF.setText("00");}
+		 if(inCmdStart.getText().isEmpty()) {inCmdStart.setText("00");}
+		 if(inCmdStop.getText().isEmpty()) {inCmdStop.setText("00");}
+		 if(inCmdA.getText().isEmpty()) {inCmdA.setText("00");}
+		 if(inCmdB.getText().isEmpty()) {inCmdB.setText("00");}
+		 if(inCmdC.getText().isEmpty()) {inCmdC.setText("00");}
+		 if(inCmdD.getText().isEmpty()) {inCmdD.setText("00");}
+		 if(inCmdE.getText().isEmpty()) {inCmdE.setText("00");}
+		 if(inCmdF.getText().isEmpty()) {inCmdF.setText("00");}
+
+		 if(Integer.decode("0x"+inModeStart.getText()) > 7) {inModeStart.setText("7");}
+		 if(Integer.decode("0x"+inModeStop.getText()) > 7) {inModeStop.setText("7");}
+		 if(Integer.decode("0x"+inModeA.getText()) > 7) {inModeA.setText("7");}
+		 if(Integer.decode("0x"+inModeB.getText()) > 7) {inModeB.setText("7");}
+		 if(Integer.decode("0x"+inModeC.getText()) > 7) {inModeC.setText("7");}
+		 if(Integer.decode("0x"+inModeD.getText()) > 7) {inModeD.setText("7");}
+		 if(Integer.decode("0x"+inModeE.getText()) > 7) {inModeE.setText("7");}
+		 if(Integer.decode("0x"+inModeF.getText()) > 7) {inModeF.setText("7");}
+		 if(Integer.decode("0x"+inAddrA.getText()) > 31) {inAddrA.setText("1F");}
+		 if(Integer.decode("0x"+inAddrStop.getText()) > 31) {inAddrStop.setText("1F");}
+		 if(Integer.decode("0x"+inAddrStart.getText()) > 31) {inAddrStart.setText("1F");}
+		 if(Integer.decode("0x"+inAddrB.getText()) > 31) {inAddrB.setText("1F");}
+		 if(Integer.decode("0x"+inAddrC.getText()) > 31) {inAddrC.setText("1F");}
+		 if(Integer.decode("0x"+inAddrD.getText()) > 31) {inAddrD.setText("1F");}
+		 if(Integer.decode("0x"+inAddrE.getText()) > 31) {inAddrE.setText("1F");}
+		 if(Integer.decode("0x"+inAddrF.getText()) > 31) {inAddrF.setText("1F");}
+		 if(Integer.decode("0x"+inCmdStart.getText()) > 63) {inCmdStart.setText("3F");}
+		 if(Integer.decode("0x"+inCmdStop.getText()) > 63) {inCmdStop.setText("3F");}
+		 if(Integer.decode("0x"+inCmdA.getText()) > 63) {inCmdA.setText("3F");}
+		 if(Integer.decode("0x"+inCmdB.getText()) > 63) {inCmdB.setText("3F");}
+		 if(Integer.decode("0x"+inCmdC.getText()) > 63) {inCmdC.setText("3F");}
+		 if(Integer.decode("0x"+inCmdD.getText()) > 63) {inCmdD.setText("3F");}
+		 if(Integer.decode("0x"+inCmdE.getText()) > 63) {inCmdE.setText("3F");}
+		 if(Integer.decode("0x"+inCmdF.getText()) > 63) {inCmdF.setText("3F");}
+	 }
 
 	private JFrame frame;
 	public SerialPort serialPort;
@@ -87,9 +156,8 @@ public class RC5_GUI extends JFrame implements FocusListener {
 	JLabel lblBattery = new JLabel("Battery:");
 	JLabel lbVoltage = new JLabel("0.00V");
 	
-	MaskFormatter formatterMode = null;
-	MaskFormatter formatterCmd = null;
-	MaskFormatter formatterAddr = null;
+	MaskFormatter formatter = null;
+	MaskFormatter formatterShort = null;
 
 
 	/**
@@ -166,41 +234,63 @@ public class RC5_GUI extends JFrame implements FocusListener {
 	private void initialize() {
 		
 		try {
-			formatterMode = new MaskFormatter("HH");
-			formatterCmd = new MaskFormatter("HH");
-			formatterAddr = new MaskFormatter("HH");
+			formatter = new MaskFormatter("HH");
+			formatterShort = new MaskFormatter("H");
 
 		} catch (ParseException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		
-		inModeStart = new JFormattedTextField(formatterMode);
-		inModeStop = new JFormattedTextField(formatterMode);
-		inModeStop.addFocusListener(this);
-		inModeA = new JFormattedTextField(formatterMode);
-		inModeB = new JFormattedTextField(formatterMode);
-		inModeC = new JFormattedTextField(formatterMode);
-		inModeD = new JFormattedTextField(formatterMode);
-		inModeE = new JFormattedTextField(formatterMode);
-		inModeF = new JFormattedTextField(formatterMode);
-		inAddrA = new JFormattedTextField(formatterAddr);
-		inAddrStop = new JFormattedTextField(formatterAddr);
-		inAddrStart = new JFormattedTextField(formatterAddr);
-		inAddrB = new JFormattedTextField(formatterAddr);
-		inAddrC = new JFormattedTextField(formatterAddr);
-		inAddrD = new JFormattedTextField(formatterAddr);
-		inAddrE = new JFormattedTextField(formatterAddr);
-		inAddrF = new JFormattedTextField(formatterAddr);
-		inCmdStart = new JFormattedTextField(formatterCmd);
-		inCmdStop = new JFormattedTextField(formatterCmd);
-		inCmdA = new JFormattedTextField(formatterCmd);
-		inCmdB = new JFormattedTextField(formatterCmd);
-		inCmdC = new JFormattedTextField(formatterCmd);
-		inCmdD = new JFormattedTextField(formatterCmd);
-		inCmdE = new JFormattedTextField(formatterCmd);
-		inCmdF = new JFormattedTextField(formatterCmd);
+		inModeStart = new JFormattedTextField(formatterShort);
+		inModeStop = new JFormattedTextField(formatterShort);
+		inModeA = new JFormattedTextField(formatterShort);
+		inModeB = new JFormattedTextField(formatterShort);
+		inModeC = new JFormattedTextField(formatterShort);
+		inModeD = new JFormattedTextField(formatterShort);
+		inModeE = new JFormattedTextField(formatterShort);
+		inModeF = new JFormattedTextField(formatterShort);
+		inAddrA = new JFormattedTextField(formatter);
+		inAddrStop = new JFormattedTextField(formatter);
+		inAddrStart = new JFormattedTextField(formatter);
+		inAddrB = new JFormattedTextField(formatter);
+		inAddrC = new JFormattedTextField(formatter);
+		inAddrD = new JFormattedTextField(formatter);
+		inAddrE = new JFormattedTextField(formatter);
+		inAddrF = new JFormattedTextField(formatter);
+		inCmdStart = new JFormattedTextField(formatter);
+		inCmdStop = new JFormattedTextField(formatter);
+		inCmdA = new JFormattedTextField(formatter);
+		inCmdB = new JFormattedTextField(formatter);
+		inCmdC = new JFormattedTextField(formatter);
+		inCmdD = new JFormattedTextField(formatter);
+		inCmdE = new JFormattedTextField(formatter);
+		inCmdF = new JFormattedTextField(formatter);
 		
+		inModeStart.addFocusListener(this);
+		inModeStop.addFocusListener(this);
+		inModeA.addFocusListener(this);
+		inModeB.addFocusListener(this);
+		inModeC.addFocusListener(this);
+		inModeD.addFocusListener(this);
+		inModeE.addFocusListener(this);
+		inModeF.addFocusListener(this);
+		inAddrA.addFocusListener(this);
+		inAddrStop.addFocusListener(this);
+		inAddrStart.addFocusListener(this);
+		inAddrB.addFocusListener(this);
+		inAddrC.addFocusListener(this);
+		inAddrD.addFocusListener(this);
+		inAddrE.addFocusListener(this);
+		inAddrF.addFocusListener(this);
+		inCmdStart.addFocusListener(this);
+		inCmdStop.addFocusListener(this);
+		inCmdA.addFocusListener(this);
+		inCmdB.addFocusListener(this);
+		inCmdC.addFocusListener(this);
+		inCmdD.addFocusListener(this);
+		inCmdE.addFocusListener(this);
+		inCmdF.addFocusListener(this);
 		
 		
 		BufferedImage wPic = null;
