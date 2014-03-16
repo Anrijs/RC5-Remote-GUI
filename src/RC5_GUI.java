@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -37,76 +39,76 @@ import jssc.SerialPortList;
 
 public class RC5_GUI extends JFrame implements FocusListener {
 	
+	public String fixHex(String in) {
+		String out = in;
+		out = out.toUpperCase();
+		out = out.replaceAll("[[^0-9A-F]]","");
+
+		if(out.isEmpty()) { out = "00";}
+		if(out.length() < 2) { out = "0"+out;}
+		return out;
+	}
+	
+	public void validete() {
+		inModeA.setText(fixHex(inModeA.getText()));
+		inModeStop.setText(fixHex(inModeStop.getText()));
+		inModeStart.setText(fixHex(inModeStop.getText()));
+		inModeB.setText(fixHex(inModeB.getText()));
+		inModeC.setText(fixHex(inModeC.getText()));
+		inModeD.setText(fixHex(inModeD.getText()));
+		inModeE.setText(fixHex(inModeE.getText()));
+		inModeF.setText(fixHex(inModeF.getText()));
+
+		inAddrA.setText(fixHex(inAddrA.getText()));
+		inAddrStop.setText(fixHex(inAddrStop.getText()));
+		inAddrStart.setText(fixHex(inAddrStart.getText()));
+		inAddrB.setText(fixHex(inAddrB.getText()));
+		inAddrC.setText(fixHex(inAddrC.getText()));
+		inAddrD.setText(fixHex(inAddrD.getText()));
+		inAddrE.setText(fixHex(inAddrE.getText()));
+		inAddrF.setText(fixHex(inAddrF.getText()));
+
+		inCmdStart.setText(fixHex(inCmdStart.getText()));
+		inCmdStop.setText(fixHex(inCmdStop.getText()));
+		inCmdA.setText(fixHex(inCmdA.getText()));
+		inCmdB.setText(fixHex(inCmdB.getText()));
+		inCmdC.setText(fixHex(inCmdC.getText()));
+		inCmdD.setText(fixHex(inCmdD.getText()));
+		inCmdE.setText(fixHex(inCmdE.getText()));
+		inCmdF.setText(fixHex(inCmdF.getText()));
+
+
+		if(Integer.parseInt(inModeA.getText(), 16) > 7) {inModeA.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeStop.getText(), 16) > 7) {inModeStop.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeStart.getText(), 16) > 7) {inModeStart.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeB.getText(), 16) > 7) {inModeB.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeC.getText(), 16) > 7) {inModeC.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeD.getText(), 16) > 7) {inModeD.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeE.getText(), 16) > 7) {inModeE.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeF.getText(), 16) > 7) {inModeF.setText(fixHex("7"));}
+
+		if(Integer.parseInt(inAddrA.getText(), 16) > 31) {inAddrA.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrStop.getText(), 16) > 31) {inAddrStop.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrStart.getText(), 16) > 31) {inAddrStart.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrB.getText(), 16) > 31) {inAddrB.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrC.getText(), 16) > 31) {inAddrC.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrD.getText(), 16) > 31) {inAddrD.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrE.getText(), 16) > 31) {inAddrE.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrF.getText(), 16) > 31) {inAddrF.setText(fixHex("1F"));}
+
+		if(Integer.parseInt(inCmdStart.getText(), 16) > 63) {inCmdStart.setText(fixHex("3F"));}
+		if(Integer.parseInt(inCmdStop.getText(), 16) > 63) {inCmdStop.setText(fixHex("3F"));}
+		if(Integer.parseInt(inCmdA.getText(), 16) > 63) {inCmdA.setText(fixHex("3F"));}
+		if(Integer.parseInt(inCmdB.getText(), 16) > 63) {inCmdB.setText(fixHex("3F"));}
+		if(Integer.parseInt(inCmdC.getText(), 16) > 63) {inCmdC.setText(fixHex("3F"));}
+		if(Integer.parseInt(inCmdD.getText(), 16) > 63) {inCmdD.setText(fixHex("3F"));}
+		if(Integer.parseInt(inCmdE.getText(), 16) > 63) {inCmdE.setText(fixHex("3F"));}
+		if(Integer.parseInt(inCmdF.getText(), 16) > 63) {inCmdF.setText(fixHex("3F"));}
+	}
+	
+	
 	 public void focusLost(FocusEvent e) {
-		 
-		 if(inAddrA.getText().length() < 2) {inAddrA.setText("0"+inAddrA.getText());}
-		 if(inAddrStop.getText().length() < 2) {inAddrStop.setText("0"+inAddrStop.getText());}
-		 if(inAddrStart.getText().length() < 2) {inAddrStart.setText("0"+inAddrStart.getText());}
-		 if(inAddrB.getText().length() < 2) {inAddrB.setText("0"+inAddrB.getText());}
-		 if(inAddrC.getText().length() < 2) {inAddrC.setText("0"+inAddrC.getText());}
-		 if(inAddrD.getText().length() < 2) {inAddrD.setText("0"+inAddrD.getText());}
-		 if(inAddrE.getText().length() < 2) {inAddrE.setText("0"+inAddrE.getText());}
-		 if(inAddrF.getText().length() < 2) {inAddrF.setText("0"+inAddrF.getText());}
-		 if(inCmdStart.getText().length() < 2) {inCmdStart.setText("0"+inCmdStart.getText());}
-		 if(inCmdStop.getText().length() < 2) {inCmdStop.setText("0"+inCmdStop.getText());}
-		 if(inCmdA.getText().length() < 2) {inCmdA.setText("0"+inCmdA.getText());}
-		 if(inCmdB.getText().length() < 2) {inCmdB.setText("0"+inCmdB.getText());}
-		 if(inCmdC.getText().length() < 2) {inCmdC.setText("0"+inCmdC.getText());}
-		 if(inCmdD.getText().length() < 2) {inCmdD.setText("0"+inCmdD.getText());}
-		 if(inCmdE.getText().length() < 2) {inCmdE.setText("0"+inCmdE.getText());}
-		 if(inCmdF.getText().length() < 2) {inCmdF.setText("0"+inCmdF.getText());}
-
-		 
-		 if(inModeStart.getText().isEmpty()) {inModeStart.setText("0");}
-		 if(inModeStop.getText().isEmpty()) {inModeStop.setText("0");}
-		 if(inModeA.getText().isEmpty()) {inModeA.setText("0");}
-		 if(inModeB.getText().isEmpty()) {inModeB.setText("0");}
-		 if(inModeC.getText().isEmpty()) {inModeC.setText("0");}
-		 if(inModeD.getText().isEmpty()) {inModeD.setText("0");}
-		 if(inModeE.getText().isEmpty()) {inModeE.setText("0");}
-		 if(inModeF.getText().isEmpty()) {inModeF.setText("0");}
-		 
-		 if(inAddrA.getText().isEmpty()) {inAddrA.setText("00");}
-		 if(inAddrStop.getText().isEmpty()) {inAddrStop.setText("00");}
-		 if(inAddrStart.getText().isEmpty()) {inAddrStart.setText("00");}
-		 if(inAddrB.getText().isEmpty()) {inAddrB.setText("00");}
-		 if(inAddrC.getText().isEmpty()) {inAddrC.setText("00");}
-		 if(inAddrD.getText().isEmpty()) {inAddrD.setText("00");}
-		 if(inAddrE.getText().isEmpty()) {inAddrE.setText("00");}
-		 if(inAddrF.getText().isEmpty()) {inAddrF.setText("00");}
-		 if(inCmdStart.getText().isEmpty()) {inCmdStart.setText("00");}
-		 if(inCmdStop.getText().isEmpty()) {inCmdStop.setText("00");}
-		 if(inCmdA.getText().isEmpty()) {inCmdA.setText("00");}
-		 if(inCmdB.getText().isEmpty()) {inCmdB.setText("00");}
-		 if(inCmdC.getText().isEmpty()) {inCmdC.setText("00");}
-		 if(inCmdD.getText().isEmpty()) {inCmdD.setText("00");}
-		 if(inCmdE.getText().isEmpty()) {inCmdE.setText("00");}
-		 if(inCmdF.getText().isEmpty()) {inCmdF.setText("00");}
-
-		 if(Integer.decode("0x"+inModeStart.getText()) > 7) {inModeStart.setText("7");}
-		 if(Integer.decode("0x"+inModeStop.getText()) > 7) {inModeStop.setText("7");}
-		 if(Integer.decode("0x"+inModeA.getText()) > 7) {inModeA.setText("7");}
-		 if(Integer.decode("0x"+inModeB.getText()) > 7) {inModeB.setText("7");}
-		 if(Integer.decode("0x"+inModeC.getText()) > 7) {inModeC.setText("7");}
-		 if(Integer.decode("0x"+inModeD.getText()) > 7) {inModeD.setText("7");}
-		 if(Integer.decode("0x"+inModeE.getText()) > 7) {inModeE.setText("7");}
-		 if(Integer.decode("0x"+inModeF.getText()) > 7) {inModeF.setText("7");}
-		 if(Integer.decode("0x"+inAddrA.getText()) > 31) {inAddrA.setText("1F");}
-		 if(Integer.decode("0x"+inAddrStop.getText()) > 31) {inAddrStop.setText("1F");}
-		 if(Integer.decode("0x"+inAddrStart.getText()) > 31) {inAddrStart.setText("1F");}
-		 if(Integer.decode("0x"+inAddrB.getText()) > 31) {inAddrB.setText("1F");}
-		 if(Integer.decode("0x"+inAddrC.getText()) > 31) {inAddrC.setText("1F");}
-		 if(Integer.decode("0x"+inAddrD.getText()) > 31) {inAddrD.setText("1F");}
-		 if(Integer.decode("0x"+inAddrE.getText()) > 31) {inAddrE.setText("1F");}
-		 if(Integer.decode("0x"+inAddrF.getText()) > 31) {inAddrF.setText("1F");}
-		 if(Integer.decode("0x"+inCmdStart.getText()) > 63) {inCmdStart.setText("3F");}
-		 if(Integer.decode("0x"+inCmdStop.getText()) > 63) {inCmdStop.setText("3F");}
-		 if(Integer.decode("0x"+inCmdA.getText()) > 63) {inCmdA.setText("3F");}
-		 if(Integer.decode("0x"+inCmdB.getText()) > 63) {inCmdB.setText("3F");}
-		 if(Integer.decode("0x"+inCmdC.getText()) > 63) {inCmdC.setText("3F");}
-		 if(Integer.decode("0x"+inCmdD.getText()) > 63) {inCmdD.setText("3F");}
-		 if(Integer.decode("0x"+inCmdE.getText()) > 63) {inCmdE.setText("3F");}
-		 if(Integer.decode("0x"+inCmdF.getText()) > 63) {inCmdF.setText("3F");}
+		validete();
 	 }
 
 	private JFrame frame;
@@ -155,9 +157,6 @@ public class RC5_GUI extends JFrame implements FocusListener {
 	JSeparator separator = new JSeparator();
 	JLabel lblBattery = new JLabel("Battery:");
 	JLabel lbVoltage = new JLabel("0.00V");
-	
-	MaskFormatter formatter = null;
-	MaskFormatter formatterShort = null;
 
 
 	/**
@@ -182,13 +181,6 @@ public class RC5_GUI extends JFrame implements FocusListener {
 	public RC5_GUI() {
 		initialize();
 	}
-	
-	public String removeLast(String str) {
-		  if (str.length() > 0 && str.charAt(str.length()-1)=='x') {
-		    str = str.substring(0, str.length()-1);
-		  }
-		  return str;
-		}
 	
 	public void RC5_Read() {
 		try {
@@ -226,6 +218,7 @@ public class RC5_GUI extends JFrame implements FocusListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		validete();
 	}
 
 	/**
@@ -233,23 +226,22 @@ public class RC5_GUI extends JFrame implements FocusListener {
 	 */
 	private void initialize() {
 		
+		MaskFormatter formatter = null;
 		try {
 			formatter = new MaskFormatter("HH");
-			formatterShort = new MaskFormatter("H");
-
 		} catch (ParseException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		
-		inModeStart = new JFormattedTextField(formatterShort);
-		inModeStop = new JFormattedTextField(formatterShort);
-		inModeA = new JFormattedTextField(formatterShort);
-		inModeB = new JFormattedTextField(formatterShort);
-		inModeC = new JFormattedTextField(formatterShort);
-		inModeD = new JFormattedTextField(formatterShort);
-		inModeE = new JFormattedTextField(formatterShort);
-		inModeF = new JFormattedTextField(formatterShort);
+
+		inModeStart = new JFormattedTextField(formatter);
+		inModeStop = new JFormattedTextField(formatter);
+		inModeA = new JFormattedTextField(formatter);
+		inModeB = new JFormattedTextField(formatter);
+		inModeC = new JFormattedTextField(formatter);
+		inModeD = new JFormattedTextField(formatter);
+		inModeE = new JFormattedTextField(formatter);
+		inModeF = new JFormattedTextField(formatter);
 		inAddrA = new JFormattedTextField(formatter);
 		inAddrStop = new JFormattedTextField(formatter);
 		inAddrStart = new JFormattedTextField(formatter);
@@ -350,6 +342,14 @@ public class RC5_GUI extends JFrame implements FocusListener {
 		
 		btnRead.setBounds(57, 299, 73, 23);
 		frame.getContentPane().add(btnRead);
+		btnRead.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RC5_Read();				
+			}
+			
+		});
 		
 		btnWrite.setBounds(160, 299, 73, 23);
 		frame.getContentPane().add(btnWrite);
@@ -410,23 +410,7 @@ public class RC5_GUI extends JFrame implements FocusListener {
 		lblCommand.setBounds(176, 15, 73, 14);
 		frame.getContentPane().add(lblCommand);
 		
-		
 		inModeStop.setBounds(57, 71, 42, 20);
-		inModeStop.getDocument().addDocumentListener(new DocumentListener() {
-
-			@Override
-			public void changedUpdate(DocumentEvent arg0) { }
-
-			@Override
-			public void insertUpdate(DocumentEvent arg0) {
-				String text = inModeStop.getText();
-				if(text.length()>2) {inModeStop.setText(removeLast(text));}
-				System.out.println(inModeStop.getText());
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent arg0) { }
-		});
 		frame.getContentPane().add(inModeStop);
 		
 		inModeA.setBounds(57, 113, 42, 20);
