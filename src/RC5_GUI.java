@@ -50,18 +50,18 @@ public class RC5_GUI extends JFrame implements FocusListener {
 	}
 	
 	public void validete() {
-		inModeA.setText(fixHex(inModeA.getText()));
 		inModeStop.setText(fixHex(inModeStop.getText()));
-		inModeStart.setText(fixHex(inModeStop.getText()));
+		inModeStart.setText(fixHex(inModeStart.getText()));
+		inModeA.setText(fixHex(inModeA.getText()));
 		inModeB.setText(fixHex(inModeB.getText()));
 		inModeC.setText(fixHex(inModeC.getText()));
 		inModeD.setText(fixHex(inModeD.getText()));
 		inModeE.setText(fixHex(inModeE.getText()));
 		inModeF.setText(fixHex(inModeF.getText()));
 
-		inAddrA.setText(fixHex(inAddrA.getText()));
 		inAddrStop.setText(fixHex(inAddrStop.getText()));
 		inAddrStart.setText(fixHex(inAddrStart.getText()));
+		inAddrA.setText(fixHex(inAddrA.getText()));
 		inAddrB.setText(fixHex(inAddrB.getText()));
 		inAddrC.setText(fixHex(inAddrC.getText()));
 		inAddrD.setText(fixHex(inAddrD.getText()));
@@ -78,18 +78,18 @@ public class RC5_GUI extends JFrame implements FocusListener {
 		inCmdF.setText(fixHex(inCmdF.getText()));
 
 
-		if(Integer.parseInt(inModeA.getText(), 16) > 7) {inModeA.setText(fixHex("7"));}
 		if(Integer.parseInt(inModeStop.getText(), 16) > 7) {inModeStop.setText(fixHex("7"));}
 		if(Integer.parseInt(inModeStart.getText(), 16) > 7) {inModeStart.setText(fixHex("7"));}
+		if(Integer.parseInt(inModeA.getText(), 16) > 7) {inModeA.setText(fixHex("7"));}
 		if(Integer.parseInt(inModeB.getText(), 16) > 7) {inModeB.setText(fixHex("7"));}
 		if(Integer.parseInt(inModeC.getText(), 16) > 7) {inModeC.setText(fixHex("7"));}
 		if(Integer.parseInt(inModeD.getText(), 16) > 7) {inModeD.setText(fixHex("7"));}
 		if(Integer.parseInt(inModeE.getText(), 16) > 7) {inModeE.setText(fixHex("7"));}
 		if(Integer.parseInt(inModeF.getText(), 16) > 7) {inModeF.setText(fixHex("7"));}
 
-		if(Integer.parseInt(inAddrA.getText(), 16) > 31) {inAddrA.setText(fixHex("1F"));}
 		if(Integer.parseInt(inAddrStop.getText(), 16) > 31) {inAddrStop.setText(fixHex("1F"));}
 		if(Integer.parseInt(inAddrStart.getText(), 16) > 31) {inAddrStart.setText(fixHex("1F"));}
+		if(Integer.parseInt(inAddrA.getText(), 16) > 31) {inAddrA.setText(fixHex("1F"));}
 		if(Integer.parseInt(inAddrB.getText(), 16) > 31) {inAddrB.setText(fixHex("1F"));}
 		if(Integer.parseInt(inAddrC.getText(), 16) > 31) {inAddrC.setText(fixHex("1F"));}
 		if(Integer.parseInt(inAddrD.getText(), 16) > 31) {inAddrD.setText(fixHex("1F"));}
@@ -182,6 +182,60 @@ public class RC5_GUI extends JFrame implements FocusListener {
 		initialize();
 	}
 	
+	public void RC5_set_button(int remote, int btn, int type, int mode) {
+		try {
+			serialPort.writeByte((byte) 0xBB); // CMD
+			serialPort.writeByte((byte) type); // Type - Write Mode
+			serialPort.writeByte((byte) remote); // Remote Mode
+			serialPort.writeByte((byte) btn); // Button
+			serialPort.writeByte((byte) mode);
+
+		} catch (SerialPortException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void RC5_flush_data() {
+		try {
+			serialPort.writeByte((byte) 0xBB); // CMD
+			serialPort.writeByte((byte) 0x04); // CMD
+		} catch (SerialPortException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	public void RC5_Write() {
+		RC5_set_button(0, 0, 1, Integer.parseInt(inModeStart.getText(), 16));
+		RC5_set_button(0, 1, 1, Integer.parseInt(inModeStop.getText(), 16));
+		RC5_set_button(0, 2, 1, Integer.parseInt(inModeA.getText(), 16));
+		RC5_set_button(0, 3, 1, Integer.parseInt(inModeB.getText(), 16));
+		RC5_set_button(0, 4, 1, Integer.parseInt(inModeC.getText(), 16));
+		RC5_set_button(0, 5, 1, Integer.parseInt(inModeD.getText(), 16));
+		RC5_set_button(0, 6, 1, Integer.parseInt(inModeE.getText(), 16));
+		RC5_set_button(0, 7, 1, Integer.parseInt(inModeF.getText(), 16));
+		
+		RC5_set_button(0, 0, 2, Integer.parseInt(inAddrStart.getText(), 16));
+		RC5_set_button(0, 1, 2, Integer.parseInt(inAddrStop.getText(), 16));
+		RC5_set_button(0, 2, 2, Integer.parseInt(inAddrA.getText(), 16));
+		RC5_set_button(0, 3, 2, Integer.parseInt(inAddrB.getText(), 16));
+		RC5_set_button(0, 4, 2, Integer.parseInt(inAddrC.getText(), 16));
+		RC5_set_button(0, 5, 2, Integer.parseInt(inAddrD.getText(), 16));
+		RC5_set_button(0, 6, 2, Integer.parseInt(inAddrE.getText(), 16));
+		RC5_set_button(0, 7, 2, Integer.parseInt(inAddrF.getText(), 16));
+	
+		RC5_set_button(0, 0, 3, Integer.parseInt(inCmdStart.getText(), 16));
+		RC5_set_button(0, 1, 3, Integer.parseInt(inCmdStop.getText(), 16));
+		RC5_set_button(0, 2, 3, Integer.parseInt(inCmdA.getText(), 16));
+		RC5_set_button(0, 3, 3, Integer.parseInt(inCmdB.getText(), 16));
+		RC5_set_button(0, 4, 3, Integer.parseInt(inCmdC.getText(), 16));
+		RC5_set_button(0, 5, 3, Integer.parseInt(inCmdD.getText(), 16));
+		RC5_set_button(0, 6, 3, Integer.parseInt(inCmdE.getText(), 16));
+		RC5_set_button(0, 7, 3, Integer.parseInt(inCmdF.getText(), 16));
+	}
+	
 	public void RC5_Read() {
 		try {
 			serialPort.writeByte((byte) 0xAA);
@@ -219,6 +273,14 @@ public class RC5_GUI extends JFrame implements FocusListener {
 			e.printStackTrace();
 		}
 		validete();
+	}
+	
+	public void sleep(int ms) {
+		try {
+		    Thread.sleep(ms);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		}
 	}
 
 	/**
@@ -353,6 +415,14 @@ public class RC5_GUI extends JFrame implements FocusListener {
 		
 		btnWrite.setBounds(160, 299, 73, 23);
 		frame.getContentPane().add(btnWrite);
+		btnWrite.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RC5_Write();
+				RC5_flush_data();
+			}
+		});
 		
 		serialList.setBounds(541, 12, 73, 20);
 		frame.getContentPane().add(serialList);
